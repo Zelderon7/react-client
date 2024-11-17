@@ -45,6 +45,10 @@ const Login: React.FC = () => {
         throw new Error(errorData || "Login failed");
       }
 
+      if (response.status === 428) {
+        navigate("/confirm-email");
+        navigate("/confirm-email");
+      }
       // If successful, show success message and navigate
       setSuccess("Login successful!");
       const data = await response.json();

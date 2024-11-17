@@ -3,6 +3,8 @@ import React from "react";
 const ConfirmEmail: React.FC = () => {
   const email: string = localStorage.getItem("confirm-email")!;
 
+  sayHi();
+
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden py-6 sm:py-12 bg-white">
       <div className="max-w-xl px-5 text-center">
@@ -24,5 +26,9 @@ const ConfirmEmail: React.FC = () => {
     </div>
   );
 };
+
+function sayHi() {
+  console.log("Hi");
+}
 
 export default ConfirmEmail;
