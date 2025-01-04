@@ -1,13 +1,113 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Tailwind Base Styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg-primary: #ffffff; /* Light background */
+  --color-bg-secondary: #f8f9fa; /* Light secondary background */
+  --color-bg-third: #e4e4e4; /* Light secondary background */
+  --color-text-primary: #121212; /* Dark text for light theme */
+  --color-text-secondary: #6c757d; /* Muted text */
+  --color-accent: #3a85ff; /* Accent blue */
+  --color-logo: #3a85ff; /* Accent blue */
+  --color-border: #e0e0e0;
+  --color-navbar-bg: #b3d1e8;
+  --color-shadow-primary: #39393948;
+  --color-class-bg: #96aed0fe;
+  --color-text-danger: #881a1a;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+[data-theme="dark"] {
+  --color-bg-primary: #121212; /* Dark background */
+  --color-bg-secondary: #181818; /* Dark secondary background */
+  --color-bg-third: #1e1e1e;
+  --color-text-primary: #e0e0e0; /* Light text for dark theme */
+  --color-text-secondary: #a6a6a6; /* Muted text for dark theme */
+  --color-logo: #3a85ff; /* Accent blue */
+  --color-accent: #3a85ff;
+  --color-border: #2a2a2a;
+  --color-navbar-bg: #111111;
+  --color-shadow-primary: #0045b3af;
+  --color-class-bg: #2a4750;
+  --color-text-danger: #881a1a;
+}
+
+/* Set the body's background and text color */
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  transition: none; /* Disable transition initially to prevent flicker */
+}
+
+/* When the theme is loaded, apply transitions */
+body.theme-loaded {
+  transition: background-color 0.3s ease, color 0.3s ease; /* Add smooth transition once theme is loaded */
+}
+
+/* Transition other elements as needed */
+a {
+  color: var(--color-accent);
+  transition: color 0.3s ease; /* Add smooth transition for link color */
+}
+
+button {
+  background-color: var(--color-accent);
+  transition: background-color 0.3s ease; /* Add smooth transition for button background */
+}
+
+/* Optional: If you want borders to fade smoothly too */
+input,
+select,
+textarea {
+  border-color: var(--color-border);
+  transition: border-color 0.3s ease;
+}
+
+/* Scrollbar styles */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background-color: var(
+    --color-bg-secondary
+  ); /* Light background for scrollbar track */
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: var(--color-border); /* Light thumb color */
+  border-radius: 4px; /* Rounded scrollbar thumb */
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-accent); /* Accent color on hover */
+}
+
+/* Dark theme scrollbar styling */
+[data-theme="dark"] .scrollbar-custom::-webkit-scrollbar-track {
+  background-color: var(
+    --color-bg-primary
+  ); /* Dark background for scrollbar track */
+}
+
+[data-theme="dark"] .scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: var(
+    --color-text-secondary
+  ); /* Lighter thumb color for dark theme */
+}
+
+[data-theme="dark"] .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-accent); /* Accent color on hover */
+}
+
+/* Firefox scrollbar styling */
+.scrollbar-custom {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) var(--color-bg-secondary);
+}
+
+[data-theme="dark"] .scrollbar-custom {
+  scrollbar-color: var(--color-text-secondary) var(--color-bg-primary);
 }
