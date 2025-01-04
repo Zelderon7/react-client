@@ -1,11 +1,12 @@
 export interface IClassVM {
+  id: number;
   image: string;
   title: string;
   description: string;
 }
 
 export interface IFullClass {
-  image: string;
+  image: string | null;
   title: string;
   description: string;
   sections: { sectionTitle: string; sectionId: number }[];

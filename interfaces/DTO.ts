@@ -13,6 +13,7 @@ export interface IUserTokenDTO {
 }
 
 export interface IClassDTO {
+  id: number;
   name: string; // Maps to public string Name
   imageUrl: string | null;
   isPublic: boolean; // Maps to public bool IsPublic
@@ -21,11 +22,11 @@ export interface IClassDTO {
 }
 
 export interface IFullClassDTO {
+  id: number;
   imageUrl: string | null;
-  isPublic: boolean; // Maps to public bool IsPublic
-  institutionId: number; // Maps to public int InstitutionId
-  institutionDTO?: IInstitutionDTO; // Nullable reference type InstitutionDTO
-  title: string;
+  name: string;
   description: string;
-  sections: { sectionTitle: string; sectionContent: string }[];
+  isPublic: boolean;
+  institutionId: number;
+  classSections: { sectionTitle: string; sectionId: number }[];
 }

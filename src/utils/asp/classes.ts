@@ -1,7 +1,10 @@
 import { title } from "process";
-import { IClassDTO } from "../../../interfaces/DTO";
+import { IClassDTO, IFullClassDTO } from "../../../interfaces/DTO";
 import { IClassVM, IChallengeVM, IFullClass } from "../../../interfaces/VM";
-import { IClassDTOToIClassVM } from "../DTO/typeConversions";
+import {
+  FullClassDTOToFullClassVM,
+  IClassDTOToIClassVM,
+} from "../DTO/typeConversions";
 import { CHALLENGES_GRADIENT_COLORS } from "../../constants";
 
 export async function getRecent(): Promise<string | IClassVM[]> {
@@ -97,10 +100,9 @@ export async function getFullClass(
 
     if (!response.ok) return response.status.toString();
 
-    const classData = await response.json();
-    if (!(classData as IFullClass)) return "Type error!";
+    const classData = (await response.json()) as IFullClassDTO;
 
-    return classData as IFullClass;
+    return FullClassDTOToFullClassVM(classData);
   } catch (error) {
     return "Failed to fetch";
   }
