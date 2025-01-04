@@ -7,7 +7,7 @@ import Registration from "./pages/authorization/Registration";
 import ConfirmEmail from "./pages/authorization/ConfirmEmail";
 import Home from "./pages/general/Home";
 import ThemeToggle from "./components/general/ThemeSwitch";
-import Class from "./pages/classes/Class";
+import FullClass from "./pages/classes/FullClass";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -21,7 +21,7 @@ const App: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/confirm-email" element={<ConfirmEmail />} />
         <Route path="/register" element={<Registration />} />
-        <Route path="/class:classId" element={<Class />} />
+        <Route path="/class/:classId" element={<FullClass />} />
       </Routes>
     </Router>
   );
