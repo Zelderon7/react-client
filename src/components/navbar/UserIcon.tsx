@@ -18,7 +18,7 @@ export default function UserIcon() {
         <div className="h-full relative">
           <a
             onClick={toggleDropdown}
-            className="flex h-full items-center justify-center"
+            className="flex h-full items-center justify-center cursor-pointer"
           >
             {icon ? (
               <img
