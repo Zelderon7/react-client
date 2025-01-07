@@ -1,9 +1,19 @@
 import { title } from "process";
-import { IClassDTO, IFullClassDTO } from "../../../interfaces/DTO";
-import { IClassVM, IChallengeVM, IFullClass } from "../../../interfaces/VM";
+import {
+  IClassDTO,
+  IFullClassDTO,
+  IClassSectionDTO,
+} from "../../../interfaces/DTO";
+import {
+  IClassVM,
+  IChallengeVM,
+  IFullClass,
+  IClassSectionVM,
+} from "../../../interfaces/VM";
 import {
   FullClassDTOToFullClassVM,
   IClassDTOToIClassVM,
+  IClassSectionDTOToVM,
 } from "../DTO/typeConversions";
 import { CHALLENGES_GRADIENT_COLORS } from "../../constants";
 
@@ -106,4 +116,70 @@ export async function getFullClass(
   } catch (error) {
     return "Failed to fetch";
   }
+}
+
+export async function addSection(
+  sectionName: string,
+  classId: string
+): Promise<IClassSectionVM[]> {
+  const url = `https://localhost:7017/api/class/add-section`;
+
+  // Construct query parameters
+  const queryString = new URLSearchParams([
+    ["name", sectionName],
+    ["classId", classId],
+  ]).toString();
+  const fullUrl = `${url}?${queryString}`;
+
+  const token = localStorage.getItem("authToken");
+  if (!token) throw new Error("No token!");
+
+  // Fetch options
+  const options: RequestInit = {
+    method: "POST", // or 'GET', 'PUT', 'DELETE', etc.
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`, // Bearer token for authorization
+    },
+  };
+
+  const response = await fetch(fullUrl, options);
+
+  if (!response.ok) throw new Error("unknown error");
+
+  const result = (await response.json()) as IClassSectionDTO[];
+  return result.map((x) => IClassSectionDTOToVM(x));
+}
+
+export async function removeSection(
+  sectionId: number,
+  classId: string
+): Promise<IClassSectionVM[]> {
+  const url = `https://localhost:7017/api/class/remove-section`;
+
+  // Construct query parameters
+  const queryString = new URLSearchParams([
+    ["classId", classId],
+    ["sectionId", sectionId.toString()],
+  ]).toString();
+  const fullUrl = `${url}?${queryString}`;
+
+  const token = localStorage.getItem("authToken");
+  if (!token) throw new Error("No token!");
+
+  // Fetch options
+  const options: RequestInit = {
+    method: "DELETE", // or 'GET', 'PUT', 'DELETE', etc.
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`, // Bearer token for authorization
+    },
+  };
+
+  const response = await fetch(fullUrl, options);
+
+  if (!response.ok) throw new Error("unknown error");
+
+  const result = (await response.json()) as IClassSectionDTO[];
+  return result.map((x) => IClassSectionDTOToVM(x));
 }

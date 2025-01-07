@@ -56,10 +56,10 @@ export default function Home() {
       <Navbar />
       <div className="flex-row mx-8 my-3 mt-8 align-start justify-middle space-y-6">
         <div>
-          <h3 className="text-3xl font-sans font-bold text-textPrimary">
+          <h3 className="text-3xl font-sans font-bold text-textPrimary select-none">
             Dashboard
           </h3>
-          <h5 className="text-sm text-textSecondary mb-4">
+          <h5 className="text-sm text-textSecondary mb-4 select-none">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error
             rerum provident expedita laboriosam quas omnis consectetur, laborum
             non reprehenderit excepturi mollitia? Hic, architecto earum ipsa

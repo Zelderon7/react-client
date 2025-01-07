@@ -9,12 +9,12 @@ export interface IFullClass {
   image: string | null;
   title: string;
   description: string;
-  sections: { sectionTitle: string; sectionId: number }[];
+  sections: IClassSectionVM[];
 }
 
-export interface IClassSection {
+export interface IClassSectionVM {
   title: string;
-  description: string;
+  sectionId: number;
   //...
 }
 

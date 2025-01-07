@@ -1,3 +1,5 @@
+import { IClassSectionVM } from "./VM";
+
 export interface IInstitutionDTO {
   name: string;
   address: string;
@@ -21,6 +23,11 @@ export interface IClassDTO {
   institutionDTO?: IInstitutionDTO; // Nullable reference type InstitutionDTO
 }
 
+export interface IClassSectionDTO {
+  sectionTitle: string;
+  sectionId: number;
+}
+
 export interface IFullClassDTO {
   id: number;
   imageUrl: string | null;
@@ -28,5 +35,5 @@ export interface IFullClassDTO {
   description: string;
   isPublic: boolean;
   institutionId: number;
-  classSections: { sectionTitle: string; sectionId: number }[];
+  classSections: IClassSectionDTO[];
 }

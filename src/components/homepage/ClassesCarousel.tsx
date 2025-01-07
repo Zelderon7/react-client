@@ -23,7 +23,7 @@ const ClassesCarousel: React.FC<CarouselProps> = ({ items, title }) => {
   };
 
   return (
-    <div className="bg-secondary w-full flex flex-col items-start justify-start border-border border-2 rounded-md p-2 pt-5 pb-3">
+    <div className="bg-secondary w-full flex flex-col items-start justify-start border-border border-2 rounded-md p-2 pt-5 pb-3 select-none">
       {title && title.length > 0 ? (
         <h3 className="text-xl font-sans font-bold ml-3">{title}</h3>
       ) : (

@@ -1,5 +1,9 @@
-import { IClassDTO, IFullClassDTO } from "../../../interfaces/DTO";
-import { IClassVM, IFullClass } from "../../../interfaces/VM";
+import {
+  IClassDTO,
+  IClassSectionDTO,
+  IFullClassDTO,
+} from "../../../interfaces/DTO";
+import { IClassSectionVM, IClassVM, IFullClass } from "../../../interfaces/VM";
 
 export const IClassDTOToIClassVM = (classDTO: IClassDTO): IClassVM => {
   return {
@@ -19,11 +23,13 @@ export function FullClassDTOToFullClassVM(data: IFullClassDTO): IFullClass {
     image: data.imageUrl,
     title: data.name,
     description: data.description,
-    sections: data.classSections
-      .map((s) => ({
-        sectionTitle: s.sectionTitle,
-        sectionId: s.sectionId,
-      }))
-      .flat(),
+    sections: data.classSections.map((s) => IClassSectionDTOToVM(s)).flat(),
+  };
+}
+
+export function IClassSectionDTOToVM(data: IClassSectionDTO): IClassSectionVM {
+  return {
+    title: data.sectionTitle,
+    sectionId: data.sectionId,
   };
 }
