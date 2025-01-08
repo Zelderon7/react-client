@@ -15,7 +15,7 @@ export default function AddSection({
   const [sectionName, setSectionName] = useState<string>("");
 
   const handleButtonClick = () => {
-    setFormVisible(true);
+    setFormVisible(!isFormVisible);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,11 +41,7 @@ export default function AddSection({
       {!isFormVisible ? (
         <></>
       ) : (
-        <form
-          onSubmit={handleSubmit}
-          onMouseLeave={() => setFormVisible(false)}
-          className="p-3 pl-0"
-        >
+        <form onSubmit={handleSubmit} className="p-3 pl-0">
           <input
             type="text"
             value={sectionName}
